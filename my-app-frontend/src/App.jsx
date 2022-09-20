@@ -1,11 +1,19 @@
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+
+  // useEffect(() => {
+  //   fetch('http://localhost:9292/teams')
+  //   .then ((resp) => resp.json())
+  //   .then ((course) => setCourseList(course))
+  // }, []);
+
   return (
+
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
