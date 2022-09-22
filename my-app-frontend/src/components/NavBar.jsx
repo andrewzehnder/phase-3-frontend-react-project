@@ -26,7 +26,7 @@ const NavBar = () => {
             Football Rosters
           </Typography>
           <Button color="inherit" component={ Link } to="/">Home</Button>
-          <Button color="inherit" component={ Link } to="/teams/add">Add New Team</Button>
+          <Button color="inherit" component={ Link } to="/player/add">Add New Player</Button>
         </Toolbar>
       </AppBar>
     </Box>

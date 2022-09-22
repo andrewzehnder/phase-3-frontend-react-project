@@ -1,7 +1,7 @@
 //rafce
 
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
 
 const Players = ({ teamsList }) => {
     const id  = useParams();
@@ -27,6 +28,7 @@ const Players = ({ teamsList }) => {
             <TableCell align="right">Position</TableCell>
             <TableCell align="right">University</TableCell>
             <TableCell align="right">Years of Experience</TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,6 +43,9 @@ const Players = ({ teamsList }) => {
               <TableCell align="right">{player.position}</TableCell>
               <TableCell align="right">{player.university}</TableCell>
               <TableCell align="right">{player.years_of_experience}</TableCell>
+              <TableCell align="right">
+              <Link to={`/player/${player.id}/edit`} >Edit/Delete Player</Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
