@@ -1,11 +1,11 @@
 import React from 'react';  
 import Team from './Team';
 
-const Home = ({ teamsList }) => {
+const Home = ({ teamsList, updateSelectedTeam }) => {
 
     console.log("teamList2", teamsList)
 
-    const teamItem = teamsList.map(team => <Team key={ team.id } team={ team } />)
+    const teamItem = teamsList.map(team => <Team key={ team.id } team={ team } updateSelectedTeam={ updateSelectedTeam } />)
 
     return (
         <div>
