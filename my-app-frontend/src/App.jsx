@@ -6,7 +6,6 @@ import './App.css';
 
 const App = () => {
   const [teamsList, setTeamsList] = useState([])
-  const [selectedTeam, setSelectedTeam] = useState()
 
   useEffect(() => {
     fetch('http://localhost:9292/teams')
@@ -16,19 +15,16 @@ const App = () => {
 
   console.log("teamsList", teamsList)
 
-  const updateSelectedTeam = team => {
-    setSelectedTeam(team)
-  }
 
-  console.log("SelectedTeam", selectedTeam)
+  
 
 
 
   return (
       <Router>
           <Routes>
-            <Route path="/" element={<Home teamsList={ teamsList } updateSelectedTeam={ updateSelectedTeam } />} />
-            <Route path="/teams/:id/players" element={<Players team={ selectedTeam }/>} />
+            <Route path="/" element={<Home teamsList={ teamsList }/>} />
+            <Route path="/teams/:id" element={<Players teamsList={ teamsList }/>} />
           </Routes>
        </Router>
     );

@@ -1,6 +1,6 @@
 //rafce
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { useParams } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,17 +10,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Players = ({ team }) => {
-    const { id } = useParams();
-    const [playersList, setPlayersList] = useState([])
+const Players = ({ teamsList }) => {
+    const id  = useParams();
 
-    useEffect(() => {
-        fetch(`http://localhost:9292//teams/${id}/players`)
-        .then ((resp) => resp.json())
-        .then ((players) => setPlayersList(players))
-        }, []);
-    
-        console.log(playersList, team.id)
+    const selectedTeam = teamsList.find(team => team.id === parseInt(id.id))
 
   return (
 
@@ -37,12 +30,12 @@ const Players = ({ team }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {playersList.map((player) => (
+          {selectedTeam.football_players.map((player) => (
             <TableRow
               key={player.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">Team</TableCell>
+              <TableCell component="th" scope="row">{selectedTeam.team_name}</TableCell>
               <TableCell align="right">{player.first_name}</TableCell>
               <TableCell align="right">{player.last_name}</TableCell>
               <TableCell align="right">{player.position}</TableCell>
