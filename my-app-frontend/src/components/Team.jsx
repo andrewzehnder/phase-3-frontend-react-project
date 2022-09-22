@@ -13,7 +13,8 @@ const Team = ({ team, updateSelectedTeam }) => {
         bgcolor: 'background.paper',
       };
 
-    const handleClick = team => {
+    const handleClick = event => {
+        console.log("click", event)
         updateSelectedTeam(team)
     }
 
@@ -21,7 +22,8 @@ const Team = ({ team, updateSelectedTeam }) => {
 
     <List sx={style} component="nav" aria-label="mailbox folders">
       <ListItem button>
-        <Link href={`http://localhost:3000/teams/${team.id}/players`} onClick= { handleClick }>{team.team_name}</Link>
+        {/* ask about link and how it works with route */}
+        <Link to={`teams/${team.id}/players`} onClick= { handleClick }>{team.team_name}</Link>
       </ListItem>
       <Divider />
     </List>

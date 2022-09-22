@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Players = () => {
+const Players = ({ team }) => {
     const { id } = useParams();
     const [playersList, setPlayersList] = useState([])
 
@@ -20,7 +20,7 @@ const Players = () => {
         .then ((players) => setPlayersList(players))
         }, []);
     
-        console.log(playersList)
+        console.log(playersList, team.id)
 
   return (
 

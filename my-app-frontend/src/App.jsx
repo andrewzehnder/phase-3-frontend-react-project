@@ -28,7 +28,7 @@ const App = () => {
       <Router>
           <Routes>
             <Route path="/" element={<Home teamsList={ teamsList } updateSelectedTeam={ updateSelectedTeam } />} />
-            <Route path="/teams/:id/players" element={<Players />} />
+            <Route path="/teams/:id/players" element={<Players team={ selectedTeam }/>} />
           </Routes>
        </Router>
     );
