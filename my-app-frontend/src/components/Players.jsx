@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Players =() => {
+const Players = () => {
     const { id } = useParams();
     const [playersList, setPlayersList] = useState([])
 
@@ -23,37 +23,36 @@ const Players =() => {
         console.log(playersList)
 
   return (
-    <div>Players</div>
 
-    // <TableContainer component={Paper}>
-    //   <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-    //     <TableHead>
-    //       <TableRow>
-    //         <TableCell>{ team.team_name }</TableCell>
-    //         <TableCell align="right">Calories</TableCell>
-    //         <TableCell align="right">Fat&nbsp;(g)</TableCell>
-    //         <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-    //         <TableCell align="right">Protein&nbsp;(g)</TableCell>
-    //       </TableRow>
-    //     </TableHead>
-    //     <TableBody>
-    //       {rows.map((row) => (
-    //         <TableRow
-    //           key={row.name}
-    //           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    //         >
-    //           <TableCell component="th" scope="row">
-    //             {row.name}
-    //           </TableCell>
-    //           <TableCell align="right">{row.calories}</TableCell>
-    //           <TableCell align="right">{row.fat}</TableCell>
-    //           <TableCell align="right">{row.carbs}</TableCell>
-    //           <TableCell align="right">{row.protein}</TableCell>
-    //         </TableRow>
-    //       ))}
-    //     </TableBody>
-    //   </Table>
-    // </TableContainer>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Team Name</TableCell>
+            <TableCell align="right">First Name</TableCell>
+            <TableCell align="right">Last Name</TableCell>
+            <TableCell align="right">Position</TableCell>
+            <TableCell align="right">University</TableCell>
+            <TableCell align="right">Years of Experience</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {playersList.map((player) => (
+            <TableRow
+              key={player.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">Team</TableCell>
+              <TableCell align="right">{player.first_name}</TableCell>
+              <TableCell align="right">{player.last_name}</TableCell>
+              <TableCell align="right">{player.position}</TableCell>
+              <TableCell align="right">{player.university}</TableCell>
+              <TableCell align="right">{player.years_of_experience}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 
