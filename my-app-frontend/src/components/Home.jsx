@@ -1,17 +1,19 @@
 import React from 'react';  
 import Team from './Team';
+import Box from '@mui/material/Box';
 
 const Home = ({ teamsList }) => {
 
-    const teamItem = teamsList.map(team => <Team key={ team.id } team={ team } />)
 
     return (
-        <div>
-        <h3>Teams List</h3>
-        <ul>
-          { teamItem }
-        </ul>
-    </div>
+      <form>
+        <h2>Teams List</h2>
+        {/* How do I get it to look like a card? */}
+        <Box>
+          { teamsList.map(team => <Team key={ team.id } team={ team } />) }
+        </Box>
+        <br />
+      </form>
     )
 }
 

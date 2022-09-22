@@ -16,16 +16,12 @@ const App = () => {
 
   console.log("teamsList", teamsList)
 
-
-  
-
-
-
   return (
       <Router>
           <NavBar />
           <Routes>
             <Route path="/" element={<Home teamsList={ teamsList }/>} />
+            <Route path="/teams/add" element={<Players teamsList={ teamsList }/>} />
             <Route path="/teams/:id" element={<Players teamsList={ teamsList }/>} />
           </Routes>
        </Router>
