@@ -1,6 +1,7 @@
 //rafce
 
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import { useParams } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,12 +10,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Players = () => {
-
+const Players =() => {
+    const { id } = useParams();
     const [playersList, setPlayersList] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:9292/players')
+        fetch(`http://localhost:9292//teams/${id}/players`)
         .then ((resp) => resp.json())
         .then ((players) => setPlayersList(players))
         }, []);
