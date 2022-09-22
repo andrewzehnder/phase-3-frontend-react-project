@@ -7,7 +7,7 @@ const Home = ({ teamsList }) => {
 
     return (
         <div>
-        <h1>Team List</h1>
+        <h3>Teams List</h3>
         <ul>
           { teamItem }
         </ul>

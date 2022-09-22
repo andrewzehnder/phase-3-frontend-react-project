@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Players from './components/Players';
+import NavBar from './components/NavBar';
 import './App.css';
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
       <Router>
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home teamsList={ teamsList }/>} />
             <Route path="/teams/:id" element={<Players teamsList={ teamsList }/>} />
