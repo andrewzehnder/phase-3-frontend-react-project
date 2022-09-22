@@ -1,33 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
 import './App.css';
 
 const App = () => {
+  const [teamsList, setTeamsList] = useState([])
 
-  // useEffect(() => {
-  //   fetch('http://localhost:9292/teams')
-  //   .then ((resp) => resp.json())
-  //   .then ((course) => setCourseList(course))
-  // }, []);
+  useEffect(() => {
+    fetch('http://localhost:9292/teams')
+    .then ((resp) => resp.json())
+    .then ((team) => setTeamsList(team))
+  }, []);
+
+  console.log("teamsList", teamsList)
 
   return (
-
-
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <Router>
+          <Routes>
+            <Route path="/" element={<Home teamsList={ teamsList } />} />
+          </Routes>
+       </Router>
+    );
 }
 
 export default App;
