@@ -34,13 +34,22 @@ const App = () => {
     setPlayersList(updatedPlayersList);
   }
 
+  const handleAddTeam = team => {
+    setTeamsList([...teamsList, team]);
+  }
+
+  const handleDeleteTeam = id => {
+    const updatedTeamsList = teamsList.filter((team) => team.id !== id);
+    setTeamsList(updatedTeamsList)
+  }
+
   return (
       <Router>
           <NavBar />
           <Routes>
-            <Route path="/" element={<Home teamsList={ teamsList }/>} />
+            <Route path="/" element={<Home teamsList={ teamsList } addTeam= { handleAddTeam }/>} />
             <Route path="/player/add" element={<AddPlayer updatePlayers={ handleUpdatePlayers } />} />
-            <Route path="/teams/:id" element={<Players teamsList={ teamsList }/>} />
+            <Route path="/teams/:id" element={<Players teamsList={ teamsList } deleteTeam={ handleDeleteTeam }/>} />
             <Route path="/player/:id/edit" element={<EditPlayer updatePlayers={ handleUpdatePlayers } deletePlayer={ handleDeletePlayer } teamsList={ teamsList }/>} />
           </Routes>
        </Router>
