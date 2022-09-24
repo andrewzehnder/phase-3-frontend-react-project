@@ -5,9 +5,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 
-const EditPlayer = ({ updatePlayers, deletePlayer }) => {
-    const id  = useParams();
-    const playerID = parseInt(id.id)
+const EditPlayer = ({ updatePlayers, teamsList }) => {
+    const {football_team_id, id }  = useParams();
+    const football_team_id_int = parseInt(football_team_id);
+    const player_id_int = parseInt(id);
     const navigate = useNavigate(0);
 
     const [player, setPlayer] = useState({
@@ -18,18 +19,21 @@ const EditPlayer = ({ updatePlayers, deletePlayer }) => {
         years_of_experience: "",
         football_team_id: ""
      })
+    // Couldn't get the fields below to be editable when using these fields.
+    // const editedPlayersTeam = teamsList.find((team) => team.id === football_team_id_int)
 
-    
+    // const editedPlayer = editedPlayersTeam.football_players.find(player => player.id === player_id_int)
 
     useEffect(() => {
-        fetch(`http://localhost:9292/player/${playerID}`)
+        fetch(`http://localhost:9292/teams/${football_team_id_int}/players/${player_id_int}`)
         .then ((resp) => resp.json())
         .then ((player) => setPlayer(player))
       }, []);
 
+      
     const handleSubmit = e => {
         e.preventDefault();
-        fetch(`http://localhost:9292/player/${playerID}`, {
+        fetch(`http://localhost:9292/teams/${football_team_id_int}/players/${player_id_int}`, {
             method: "PATCH",
             headers: {
                 "Accept": "application/json",
@@ -38,20 +42,13 @@ const EditPlayer = ({ updatePlayers, deletePlayer }) => {
             body: JSON.stringify(player)
         })
         .then(resp => resp.json())
-        .then(data => {
-            updatePlayers(data);
-            navigate(`/teams/${player.football_team_id}`);
+        .then(updatedState => {
+            updatePlayers(updatedState)
+            navigate(`/teams/${football_team_id_int}`);
         }) 
     }
 
-    const handleDelete = () => {
-        fetch(`http://localhost:9292/player/${playerID}`, {
-            method: "DELETE",
-        });
-
-        deletePlayer(playerID)
-        navigate(`/teams/${player.football_team_id}`);
-    }
+    
 
     const handleChange = e => {
         setPlayer({
@@ -65,8 +62,6 @@ const EditPlayer = ({ updatePlayers, deletePlayer }) => {
 
         <div>
           <h1>Edit or Delete Player</h1>
-    
-          <form >
     
             <Box
                 component="form"
@@ -136,23 +131,10 @@ const EditPlayer = ({ updatePlayers, deletePlayer }) => {
             />
             </div>
     
-            <div>
-            <TextField
-              required
-              id="football_team_id"
-              label="Football Team ID:"
-              type="number"
-              name="football_team_id"
-              value={ player.football_team_id } 
-              onChange={ handleChange }
-            />
-            </div>
-    
             </Box>
     
-            <Button input type="submit" variant="outlined" onClick={ handleSubmit } >Save</Button>   <Button input type="submit" variant="outlined" onClick={ handleDelete } >Delete</Button>
+            <Button input type="submit" variant="outlined" onClick={ handleSubmit } >Save</Button>
     
-          </form>
         </div>
       )
 }

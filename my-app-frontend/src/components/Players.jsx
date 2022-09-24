@@ -12,13 +12,14 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 
-const Players = ({ teamsList, deleteTeam }) => {
+const Players = ({ teamsList, deleteTeam, deletePlayer }) => {
     const id  = useParams();
+    const football_team_id_int = parseInt(id.id);
     const navigate = useNavigate(0);
 
-    const selectedTeam = teamsList.find(team => team.id === parseInt(id.id))
+    const selectedTeam = teamsList.find(team => team.id === football_team_id_int)
 
-    const handleDelete = () => {
+    const handleDeletedTeam = () => {
       fetch(`http://localhost:9292/team/${selectedTeam.id}`, {
           method: "DELETE",
       });
@@ -26,6 +27,21 @@ const Players = ({ teamsList, deleteTeam }) => {
       deleteTeam(selectedTeam.id)
       navigate(`/`);
   }
+
+  const handleDeletedPlayer = (e) => {
+    fetch(`http://localhost:9292/player/${e.target.id}`, {
+        method: "DELETE",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    })
+    .then(resp => resp.json())
+    .then(updatedState => {
+        deletePlayer(updatedState);
+        navigate(`/teams/${football_team_id_int}`);
+    })    
+}
 
   return (
 
@@ -39,7 +55,8 @@ const Players = ({ teamsList, deleteTeam }) => {
             <TableCell align="right">Position</TableCell>
             <TableCell align="right">University</TableCell>
             <TableCell align="right">Years of Experience</TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell align="right">Edit Player</TableCell>
+            <TableCell align="right">Delete Player</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,13 +72,16 @@ const Players = ({ teamsList, deleteTeam }) => {
               <TableCell align="right">{player.university}</TableCell>
               <TableCell align="right">{player.years_of_experience}</TableCell>
               <TableCell align="right">
-              <Link to={`/player/${player.id}/edit`} >Edit/Delete Player</Link>
+                <Link to={`/teams/${selectedTeam.id}/players/${player.id}`} >Edit</Link> 
+              </TableCell>
+              <TableCell align="right">
+                <Button input type="submit" variant="outlined" onClick={ handleDeletedPlayer } id={player.id} >Delete</Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    <Button input type="submit" variant="outlined" onClick={ handleDelete } >Delete Team</Button>
+    <Button input type="submit" variant="outlined" onClick={ handleDeletedTeam } >Delete Team</Button>
     </TableContainer>
   )
 }

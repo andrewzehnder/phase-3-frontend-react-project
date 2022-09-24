@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 
 const Team = ({ team }) => {
 
-   
-      
       const card = (
         <React.Fragment>
           <CardContent>
@@ -19,11 +17,8 @@ const Team = ({ team }) => {
         </React.Fragment>
       );
 
-
   return(
-    
       <Card variant="outlined">{card}</Card>
-    
   );
 };
 

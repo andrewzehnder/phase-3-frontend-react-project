@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
-const AddPlayer = ({ updatePlayers }) => {
+const AddPlayer = ({ addPlayers }) => {
 
     const [player, setPlayer] = useState({
        first_name: "",
@@ -19,7 +19,7 @@ const AddPlayer = ({ updatePlayers }) => {
 
     const handleSubmit = e => {
       e.preventDefault();
-      fetch('http://localhost:9292/player/add', {
+      fetch('http://localhost:9292/players/add', {
           method: "POST",
           headers: {
               "Accept": "application/json",
@@ -29,7 +29,7 @@ const AddPlayer = ({ updatePlayers }) => {
       })
       .then(resp => resp.json())
       .then(data => {
-        updatePlayers(data);
+        addPlayers(data);
           navigate(`/teams/${player.football_team_id}`);
       }) 
   }
@@ -46,6 +46,7 @@ const AddPlayer = ({ updatePlayers }) => {
     <div>
       <h1>Add New Player</h1>
 
+      {/* Console errors about form. How do I move an onsubmit away from the form? OnClick? */}
       <form onSubmit={ handleSubmit }>
 
         <Box
