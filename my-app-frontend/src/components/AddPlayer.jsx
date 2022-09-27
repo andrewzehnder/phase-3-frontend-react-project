@@ -46,9 +46,6 @@ const AddPlayer = ({ addPlayers }) => {
     <div>
       <h1>Add New Player</h1>
 
-      {/* Console errors about form. How do I move an onsubmit away from the form? OnClick? */}
-      <form onSubmit={ handleSubmit }>
-
         <Box
             component="form"
             sx={{
@@ -131,9 +128,7 @@ const AddPlayer = ({ addPlayers }) => {
 
         </Box>
 
-        <Button input type="submit" variant="outlined" >Save</Button>
-
-      </form>
+        <Button input type="submit" variant="outlined" onClick={handleSubmit} >Save</Button>
     </div>
   )
 }

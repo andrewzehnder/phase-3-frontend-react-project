@@ -26,7 +26,8 @@ const Home = ({ teamsList, addTeam }) => {
     .then(resp => resp.json())
     .then(updatedState => {
       addTeam(updatedState);
-        navigate(`/`);
+      navigate(`/`);
+      setTeam({team_name: ""})
     }) 
   }
 
@@ -52,7 +53,6 @@ const Home = ({ teamsList, addTeam }) => {
           label="New Team Name:"
           type="text"
           name="team_name"
-          // Clear out team name after created?
           value={ team.team_name } 
           onChange={ handleChange }
         />
