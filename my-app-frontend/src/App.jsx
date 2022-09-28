@@ -69,6 +69,7 @@ const App = () => {
     //     }
     //   })
     
+    
     setTeamsList(updatedState)
   }
 

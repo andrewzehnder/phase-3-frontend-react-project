@@ -37,11 +37,11 @@ const Players = ({ teamsList, deleteTeam, deletePlayer }) => {
         }
     })
     .then(resp => resp.json())
-    .then(updatedState => {
-        deletePlayer(updatedState);
+    .then(deletedPlayer => {
+        deletePlayer(deletedPlayer);
         navigate(`/teams/${football_team_id_int}`);
     })    
-}
+  }
 
   return (
 
