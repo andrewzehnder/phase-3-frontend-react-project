@@ -61,7 +61,7 @@ const EditPlayer = ({ updatePlayers, teamsList }) => {
       return (
 
         <div>
-          <h1>Edit or Delete Player</h1>
+          <h1>Edit Player</h1>
     
             <Box
                 component="form"
