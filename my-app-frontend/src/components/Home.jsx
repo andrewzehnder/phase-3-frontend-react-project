@@ -41,7 +41,6 @@ const Home = ({ teamsList, addTeam }) => {
     return (
       <form>
         <h2>Teams List</h2>
-        {/* How do I get it to look like a card? */}
         <Box>
           { teamsList.map(team => <Team key={ team.id } team={ team } />) }
         </Box>
